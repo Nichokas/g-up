@@ -1,3 +1,5 @@
+// main.rs
+
 use reqwest::multipart;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
@@ -79,12 +81,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn load_or_create_credentials() -> Result<Credentials, Box<dyn std::error::Error>> {
-    let credentials_path = "credentials.txt";
+    let credentials_path = dirs::config_dir().unwrap().join("g-up/credentials.txt");
 
-    if !Path::new(credentials_path).exists() {
+    if !Path::new(&credentials_path).exists() {
         println!("No se encontró el archivo de credenciales. Creando 'credentials.txt'...");
 
-        let mut file = File::create(credentials_path)?;
+        if let Some(parent) = credentials_path.parent() {
+            std::fs::create_dir_all(parent)?;
+        }
 
         println!("Por favor, ingresa tu client_id:");
         let mut client_id = String::new();
@@ -100,15 +104,16 @@ fn load_or_create_credentials() -> Result<Credentials, Box<dyn std::error::Error
         };
 
         // Guardar las credenciales en el archivo
-        writeln!(file, "client_id={}", credentials.client_id)?;
-        writeln!(file, "client_secret={}", credentials.client_secret)?;
+        let mut output_file = File::create(&credentials_path)?;
+        writeln!(output_file, "client_id={}", credentials.client_id)?;
+        writeln!(output_file, "client_secret={}", credentials.client_secret)?;
 
         println!("Credenciales guardadas en 'credentials.txt'. Vuelve a ejecutar el programa.");
         std::process::exit(0);
     }
 
     // Leer credenciales del archivo
-    let file = File::open(credentials_path)?;
+    let file = File::open(&credentials_path)?;
     let reader = BufReader::new(file);
     let mut client_id = String::new();
     let mut client_secret = String::new();
