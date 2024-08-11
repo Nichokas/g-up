@@ -27,18 +27,26 @@ To upload a file to Google Drive, simply use the following command:
 Upload a .zip:
 
 ```bash
-./g-up
+$ ./g-up 
+Go to https://www.google.com/device and enter the code: ***-***-****
+Press Enter after authenticating...
 
-
+Please enter the name of the .zip file to upload: 
+test.zip
+Access token received: *****
+File uploaded successfully: {
+  "kind": "drive#file",
+  "id": "*****",
+  "name": "test.zip",
+  "mimeType": "application/zip"
+}
 ```
 
 ## TODO
 
 - [x] Added support for `.zip` files.
-- [ ] Improve error handling.
-- [ ] Add customizable configuration options.
-- [ ] Implement OAuth2 authentication for better security.
-- [ ] Document the code and add more usage examples.
+- [ ] Create documentation
+- [ ] Add more filetypes compatibility
 
 ## Contributions
 
