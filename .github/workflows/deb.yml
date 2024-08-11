@@ -1,0 +1,23 @@
+name: Package on a .deb
+run-name: .deb packaging
+on: [release]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ningenMe/setup-rustup@v1.1.0
+      - name: Setup dependencies and rust
+        run: | 
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt-get install build-essential -y
+          sudo apt-get install pkg-config openssl
+          cargo install cargo-deb
+      - name: build
+        run: |
+          cargo deb
+      - uses: actions/upload-artifact@v4.3.6
+        with:
+          name: release
+          path: ./target/debian/g-up_*.deb       
