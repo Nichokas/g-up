@@ -1,4 +1,4 @@
-## CHECK THE DOCUMENTATION FOR CREATING THE CLIENT_ID AND THE CLIENT_SECRET
+## CHECK THE [DOCUMENTATION](https://nichokas.github.io/g-up-docs/client-id-and-client-secret.html) FOR CREATING THE CLIENT_ID AND THE CLIENT_SECRET
 
 # g-up
 
