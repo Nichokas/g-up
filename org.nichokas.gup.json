@@ -38,7 +38,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "file:///home/nichokas/Projects"
+                    "url" : "https://github.com/Nichokas/g-up"
                 }
             ]
         }
