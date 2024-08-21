@@ -45,8 +45,9 @@ File uploaded successfully: {
 ## TODO
 
 - [x] Added support for `.zip` files.
-- [ ] Create documentation
+- [x] Create [documentation](https://nichokas.github.io/g-up-docs/client-id-and-client-secret.html)
 - [ ] Add more filetypes compatibility
+- [ ] Save the upload token
 
 ## Contributions
 
