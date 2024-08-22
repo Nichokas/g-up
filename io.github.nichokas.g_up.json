@@ -36,10 +36,6 @@
             "buildsystem": "meson",
             "sources": [
                 {
-                    "type": "file",
-                    "path": "generated-sources.json"
-                },
-                {
                     "type": "git",
                     "url": "https://github.com/Nichokas/g-up"
                 }
