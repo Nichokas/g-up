@@ -33,12 +33,21 @@
         {
             "name": "g-up",
             "builddir": true,
-            "buildsystem": "meson",
+            "buildsystem": "simple",
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/Nichokas/g-up"
+                },
+                {
+                    "type": "file"
+                    "path": "generated-sources.json"
                 }
+            ]
+            "build-commands": [
+                "cargo --offline fetch --manifest-path Cargo.toml --verbose",
+                "cargo --offline build --release --verbose",
+                "install -Dm755 target/release/g-up --target-directory=/app/bin",
             ]
         }
     ]
